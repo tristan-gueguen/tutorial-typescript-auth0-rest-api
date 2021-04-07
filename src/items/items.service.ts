@@ -1,6 +1,12 @@
+/**
+ * Data Model Interfaces
+ */
 import { BaseItem, Item } from './item.inteface';
 import { Items } from './items.interface';
 
+/**
+ * In-Memory Store
+ */
 let items: Items = {
     1: {
         id: 1,
@@ -25,6 +31,9 @@ let items: Items = {
       }
 };
 
+/**
+ * Service Methods
+ */
 export const findAll = async (): Promise<Item[]> => Object.values(items);
 export const find = async (id: number): Promise<Item> => items[id];
 export const create = async(newItem: BaseItem): Promise<Item> => {

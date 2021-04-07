@@ -1,9 +1,20 @@
+/**
+ * Required External Modules and Interfaces
+ */
 import express, { Request, Response } from "express";
 import * as ItemService from './items.service';
 import { BaseItem, Item } from "./item.inteface";
 
+/**
+ * Router Definition
+ */
 export const itemsRouter = express.Router();
 
+/**
+ * Controller Definitions
+ */
+
+// GET items
 itemsRouter.get("/", async (req: Request, res: Response) => {
     try {
         const items: Item[] = await ItemService.findAll();
@@ -14,6 +25,7 @@ itemsRouter.get("/", async (req: Request, res: Response) => {
     }
 });
 
+// GET items/:id
 itemsRouter.get("/:id", async (req: Request, res: Response) => {
     const id: number = parseInt(req.params.id, 10);
 
@@ -30,6 +42,7 @@ itemsRouter.get("/:id", async (req: Request, res: Response) => {
     }
 });
 
+// POST items
 itemsRouter.post("/", async (req: Request, res: Response) => {
     try {
         const item: BaseItem = req.body;
@@ -42,6 +55,7 @@ itemsRouter.post("/", async (req: Request, res: Response) => {
     }
 });
 
+// PUT items/:id
 itemsRouter.put("/:id", async (req: Request, res: Response) => {
     const id: number = parseInt(req.params.id, 10);
 
@@ -63,6 +77,7 @@ itemsRouter.put("/:id", async (req: Request, res: Response) => {
     }
 })
 
+// DELETE items/:id
 itemsRouter.delete("/:id", async (req: Request, res: Response) => {
     try {
         const id: number = parseInt(req.params.id, 10);
